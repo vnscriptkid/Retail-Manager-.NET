@@ -20,9 +20,10 @@ namespace DesktopUI
             Initialize();
 
             ConventionManager.AddElementConvention<PasswordBox>(
-            PasswordBoxHelper.BoundPasswordProperty,
-            "Password",
-            "PasswordChanged");
+                PasswordBoxHelper.BoundPasswordProperty,
+                "Password",
+                "PasswordChanged"
+            );
         }
 
         protected override void Configure()
@@ -31,7 +32,8 @@ namespace DesktopUI
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>();
+                .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<IAPIHelper, APIHelper>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
