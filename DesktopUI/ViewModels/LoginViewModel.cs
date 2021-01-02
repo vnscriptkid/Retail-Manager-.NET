@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿
+using Caliburn.Micro;
 using DesktopUI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace DesktopUI.ViewModels
         private readonly IAPIHelper _apiHelper;
         private string _userName;
         private string _password;
+        private string _errorMessage;
 
         public LoginViewModel(IAPIHelper apiHelper)
         {
@@ -48,16 +50,34 @@ namespace DesktopUI.ViewModels
                 return UserName?.Length > 0 && Password?.Length > 0;
             }
         }
+        
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set { 
+                _errorMessage = value;
+                NotifyOfPropertyChange(() => ErrorMessage);
+                NotifyOfPropertyChange(() => IsErrorVisible);
+            }
+        }
+
+        public bool IsErrorVisible
+        {
+            get {
+                return ErrorMessage?.Length > 0; 
+            }
+        }
 
         public async Task LogIn()
         {
             try
             {
+                ErrorMessage = "";
                 var result = await _apiHelper.Authenticate(UserName, Password);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ErrorMessage = ex.Message;
             }
         }
     }
