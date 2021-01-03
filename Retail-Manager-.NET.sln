@@ -8,8 +8,13 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{E7945E03-FB7D-474B-9F00-54BBC7563523}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopUI", "DesktopUI\DesktopUI.csproj", "{1BB70A64-2D56-45C8-85C8-83ECC5FAB53A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{06CD0816-1F7C-4FB3-9637-CCE5CC19D6AF} = {06CD0816-1F7C-4FB3-9637-CCE5CC19D6AF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManager.Library", "DataManager.Library\DataManager.Library.csproj", "{06A9E590-8433-4F54-83DB-71B8B448E752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopUI.Library", "DesktopUI.Library\DesktopUI.Library.csproj", "{06CD0816-1F7C-4FB3-9637-CCE5CC19D6AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +40,10 @@ Global
 		{06A9E590-8433-4F54-83DB-71B8B448E752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06A9E590-8433-4F54-83DB-71B8B448E752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06A9E590-8433-4F54-83DB-71B8B448E752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06CD0816-1F7C-4FB3-9637-CCE5CC19D6AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06CD0816-1F7C-4FB3-9637-CCE5CC19D6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06CD0816-1F7C-4FB3-9637-CCE5CC19D6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06CD0816-1F7C-4FB3-9637-CCE5CC19D6AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

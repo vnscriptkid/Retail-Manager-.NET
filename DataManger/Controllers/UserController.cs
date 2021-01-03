@@ -15,12 +15,12 @@ namespace DataManger.Controllers
     {
         // GET: Users/1
         [Route("current")]
-        public List<UserModel> GetUserById()
+        public UserModel GetUserById()
         {
             string userId = RequestContext.Principal.Identity.GetUserId();
             UserData data = new UserData();
 
-            return data.GetUserById(userId);
+            return data.GetUserById(userId).FirstOrDefault();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using DesktopUI.Helpers;
+using DesktopUI.Library.Api;
+using DesktopUI.Library.Models;
 using DesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,6 +35,7 @@ namespace DesktopUI
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
             GetType().Assembly.GetTypes()
