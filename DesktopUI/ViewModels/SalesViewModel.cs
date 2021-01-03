@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DesktopUI.ViewModels
 {
-    class SalesViewModel : Screen
+    public class SalesViewModel : Screen
     {
         private BindingList<string> _products;
-        private BindingList<string> _cart;╕
-        private string _itemQuantity;
+        private BindingList<string> _cart;
+        private int _itemQuantity;
 
         public BindingList<string> Products
         {
@@ -34,10 +34,13 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        public string ItemQuantity
+        public int ItemQuantity
         {
             get { return _itemQuantity; }
-            set { _itemQuantity = value; }
+            set { 
+                _itemQuantity = value;
+                NotifyOfPropertyChange(() => ItemQuantity);
+            }
         }
 
         public bool CanAddToCart
