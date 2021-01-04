@@ -84,7 +84,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return ItemQuantity > 0 && SelectedProduct?.QuantityInStock >= ItemQuantity;
+                return SelectedProduct != null && ItemQuantity > 0 && SelectedProduct?.QuantityInStock >= ItemQuantity;
             }
         }
 
