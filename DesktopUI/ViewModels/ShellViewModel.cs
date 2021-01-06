@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DesktopUI.EventModels;
+using DesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +13,41 @@ namespace DesktopUI.ViewModels
     {
         private readonly IEventAggregator _events;
         private readonly SalesViewModel _salesViewModel;
-        private readonly SimpleContainer _container;
+        private ILoggedInUserModel _user;
 
-        public ShellViewModel(IEventAggregator events, SalesViewModel salesViewModel)
+        public bool IsLoggedIn {  
+            get
+            {
+                return !string.IsNullOrEmpty(_user.Token);
+            }
+        }
+
+        public ShellViewModel(IEventAggregator events, SalesViewModel salesViewModel, ILoggedInUserModel user)
         {
             _events = events;
             _salesViewModel = salesViewModel;
-
+            _user = user;
             _events.Subscribe(this);
 
             ActivateItem(IoC.Get<LoginViewModel>());
         }
 
+        public void ExitApplication()
+        {
+            TryClose();
+        }
+
+        public void LogOut()
+        {
+            _user.LogOffUser();
+            ActivateItem(IoC.Get<LoginViewModel>());
+            NotifyOfPropertyChange(() => IsLoggedIn);
+        }
+
         public void Handle(LogOnEvent message)
         {
             ActivateItem(_salesViewModel);
+            NotifyOfPropertyChange(() => IsLoggedIn);
         }
     }
 }
