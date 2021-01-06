@@ -76,6 +76,17 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        private CartItemDisplayModel _selectedCartItem;
+
+        public CartItemDisplayModel SelectedCartItem
+        {
+            get { return _selectedCartItem; }
+            set { 
+                _selectedCartItem = value;
+                NotifyOfPropertyChange(() => SelectedCartItem);
+                NotifyOfPropertyChange(() => CanRemoveFromCart);
+            }
+        }   
 
         public int ItemQuantity
         {
@@ -124,12 +135,15 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return false;
+                return SelectedCartItem != null;
             }
         }
 
         public void RemoveFromCart() 
         {
+            SelectedCartItem.Product.QuantityInStock += SelectedCartItem.QuantityInCart;
+            _cart.Remove(SelectedCartItem);
+
             NotifyOfPropertyChange(() => SubTotal);
             NotifyOfPropertyChange(() => Tax);
             NotifyOfPropertyChange(() => Total);
