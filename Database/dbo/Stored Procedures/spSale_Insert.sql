@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE [dbo].[spSale_Insert]
+﻿
+CREATE PROCEDURE [dbo].[spSale_Insert]
 	@Id int output,
     @CashierId nvarchar(128),
     @SaleDate datetime2,
@@ -12,5 +13,6 @@ begin
     insert into dbo.Sale(CashierId, SaleDate, SubTotal, Tax, Total)
     values (@CashierId, @SaleDate, @SubTotal, @Tax, @Total);
 
-    select @Id = @@Identity;
+    select @Id = SCOPE_IDENTITY();
 end
+    
