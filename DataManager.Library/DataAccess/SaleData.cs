@@ -75,5 +75,14 @@ namespace DataManager.Library.DataAccess
                 }
             }
         }
+
+        public List<SaleReportModel> GetSaleReport()
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            var output = sql.LoadData<SaleReportModel, dynamic>("dbo.spSale_SaleReport", new { }, "RetailManagerDB");
+
+            return output;
+        }
     }
 }
