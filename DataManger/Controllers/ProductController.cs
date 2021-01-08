@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace DataManger.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Cashier,Admin,Manager")]
     public class ProductController : ApiController
     {
 

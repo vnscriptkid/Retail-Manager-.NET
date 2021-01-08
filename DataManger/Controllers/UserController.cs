@@ -13,7 +13,6 @@ namespace DataManger.Controllers
     [RoutePrefix("api/Users")]
     public class UserController : ApiController
     {
-        // GET: Users/1
         [Route("current")]
         public UserModel GetUserById()
         {
