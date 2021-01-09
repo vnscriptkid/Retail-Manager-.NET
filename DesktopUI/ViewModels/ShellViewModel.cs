@@ -53,6 +53,11 @@ namespace DesktopUI.ViewModels
             ActivateItem(_salesViewModel);
             NotifyOfPropertyChange(() => IsLoggedIn);
         }
+
+        public void UserManagement()
+        {
+            ActivateItem(IoC.Get<UserDisplayViewModel>());
+        }
     }
 }
  
