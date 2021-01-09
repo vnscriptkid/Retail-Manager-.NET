@@ -32,5 +32,46 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
+
+        public async Task<Dictionary<string, string>> GetAllRoles()
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/Role"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<Dictionary<string, string>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task AddUserToRole(string userId, string roleName)
+        {
+            var data = new { userId, roleName };
+
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/Role", data))
+            {
+                if (response.IsSuccessStatusCode == false)
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task RemoveUserFromRole(string userId, string roleName)
+        {
+            var data = new { userId, roleName };
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/role/delete", data))
+            {
+                if (response.IsSuccessStatusCode == false)
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }
